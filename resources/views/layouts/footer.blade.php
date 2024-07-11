@@ -1,0 +1,1 @@
+<x-footer.footer href="#" name=""> {{ config("app.name") }}  </x-footer.footer>

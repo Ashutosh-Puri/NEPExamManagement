@@ -1,0 +1,70 @@
+<div class="m-2 overflow-hidden rounded border bg-white shadow dark:border-primary-darker dark:bg-darker">
+    <div class="bg-primary px-2 py-2 font-semibold text-white dark:text-light">
+        Internal Tool Auditor Detail's
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="academicyear_id" :value="__('Academic Year')" />
+            <x-input-select id="academicyear_id" wire:model.live="academicyear_id" name="academicyear_id" class="text-center @error('academicyear_id') is-invalid @enderror w-full mt-1" :value="old('academicyear_id', $academicyear_id)" required autofocus autocomplete="academicyear_id">
+                <x-select-option class="text-start" hidden> -- Select Academic Year -- </x-select-option>
+                @forelse ($academicyears as $academicyearid => $academicyearname)
+                    <x-select-option wire:key="{{ $academicyearid }}" value="{{ $academicyearid }}" class="text-start">{{ $academicyearname }}</x-select-option>
+                @empty
+                    <x-select-option class="text-start">Academic Years Not Found</x-select-option>
+                @endforelse
+            </x-input-select>
+            <x-input-error :messages="$errors->get('academicyear_id')" class="mt-2" />
+        </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="course_id" :value="__('Programme')" />
+            <x-input-select id="course_id" wire:model.live="course_id" name="course_id" class="text-center w-full mt-1" :value="old('course_id', $course_id)" required autocomplete="course_id">
+                <x-select-option class="text-start" hidden> -- Select Programme -- </x-select-option>
+                @forelse ($courses as $courseid => $coursename)
+                    <x-select-option wire:key="{{ $courseid }}" value="{{ $courseid }}" class="text-start"> {{ $coursename }} </x-select-option>
+                @empty
+                    <x-select-option class="text-start">Courses Not Found</x-select-option>
+                @endforelse
+            </x-input-select>
+            <x-input-error :messages="$errors->get('course_id')" class="mt-2" />
+        </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="patternclass_id" :value="__('Select Class')" />
+            <x-input-select id="patternclass_id" wire:model.live="patternclass_id" name="patternclass_id" class="text-center w-full mt-1" :value="old('patternclass_id', $patternclass_id)" required autocomplete="patternclass_id">
+                <x-select-option class="text-start" hidden> -- Select Class -- </x-select-option>
+                @forelse ($pattern_classes as $pattern_class)
+                    <x-select-option wire:key="{{ $pattern_class->id }}" value="{{ $pattern_class->id }}" class="text-start"> {{ $pattern_class->classyear_name ?? '-' }} {{ $pattern_class->course_name ?? '-' }} {{ $pattern_class->pattern_name ?? '-' }} </x-select-option>
+                @empty
+                    <x-select-option class="text-start">Pattern Classes Not Found</x-select-option>
+                @endforelse
+            </x-input-select>
+            <x-input-error :messages="$errors->get('patternclass_id')" class="mt-1" />
+        </div>
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="department_id" :value="__('Select Department')" />
+            <x-input-select id="department_id" wire:model.live="department_id" name="department_id" class="text-center @error('department_id') is-invalid @enderror w-full mt-1" :value="old('department_id', $department_id)" required autofocus autocomplete="department_id">
+                <x-select-option class="text-start" hidden> -- Select Department -- </x-select-option>
+                @forelse ($departments as $department)
+                    <x-select-option wire:key="{{ $department->id }}" value="{{ $department->id }}" class="text-start">{{ $department->dept_name }}</x-select-option>
+                @empty
+                    <x-select-option class="text-start">Department Not Found</x-select-option>
+                @endforelse
+            </x-input-select>
+            <x-input-error :messages="$errors->get('department_id')" class="mt-2" />
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-1">
+        <div class="px-5 py-2 text-sm text-gray-600 dark:text-gray-400">
+            <x-input-label for="faculty_id" :value="__('Select Faculty')" />
+            <x-input-select id="faculty_id" wire:model.live="faculty_id" name="faculty_id" class="text-center @error('faculty_id') is-invalid @enderror w-full mt-1" :value="old('faculty_id', $faculty_id)" required autofocus autocomplete="faculty_id">
+                <x-select-option class="text-start" hidden> -- Select Faculty -- </x-select-option>
+                @forelse ($faculties as $faculty)
+                    <x-select-option wire:key="{{ $faculty->id }}" value="{{ $faculty->id }}" class="text-start">{{ $faculty->faculty_name }}</x-select-option>
+                @empty
+                    <x-select-option class="text-start">Faculties Not Found</x-select-option>
+                @endforelse
+            </x-input-select>
+            <x-input-error :messages="$errors->get('faculty_id')" class="mt-2" />
+        </div>
+    </div>
+    <x-form-btn>Submit</x-form-btn>
+</div>

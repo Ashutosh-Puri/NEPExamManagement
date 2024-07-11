@@ -1,0 +1,1 @@
+<input  type="radio"  {!! $attributes->merge(['class' => 'w-10 h-10 text-primary dark:text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:focus:ring-primary focus:ring-2 dark:bg-gray-700 dark:checked:bg-primary dark:border--600 dark:ring-primary checked:bg-primary focus-visible:border-gray-400 focus-visible:bg-gray-200']) !!}>

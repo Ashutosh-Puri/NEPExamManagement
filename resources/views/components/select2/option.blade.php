@@ -1,0 +1,5 @@
+<option {!! $attributes !!}>
+    {{ $slot }}
+</option>
+  
+  
